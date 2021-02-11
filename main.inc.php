@@ -22,6 +22,7 @@ $conf['vjs_conf'] = unserialize($conf['vjs_conf']);
 // Register the allowed extentions to the global conf in order
 // to sync them with other contents
 $vjs_extensions = array(
+	'mov',
 	'ogg',
 	'ogv',
 	'mp4',
@@ -213,7 +214,7 @@ function vjs_render_media($content, $picture)
 	//print $poster;
 
 	// Try to find multiple video source
-	$vjs_extensions = array('ogg', 'ogv', 'mp4', 'm4v', 'webm', 'webmv');
+	$vjs_extensions = array('mov', 'ogg', 'ogv', 'mp4', 'm4v', 'webm', 'webmv');
 	$files_ext = array_merge(array(), $vjs_extensions, array_map('strtoupper', $vjs_extensions) );
 	// Add the current file in array
 	$videos[] = array(
@@ -410,7 +411,7 @@ SELECT *
 
 function vjs_get_mimetype_icon($location, $element_info)
 {
-	if (in_array($element_info, array('ogg', 'ogv', 'mp4', 'm4v', 'webm', 'webmv', 'strm')))
+	if (in_array($element_info, array('mov', 'ogg', 'ogv', 'mp4', 'm4v', 'webm', 'webmv', 'strm')))
 	{
 		$location = 'plugins/'
 			. basename(dirname(__FILE__))
@@ -436,6 +437,7 @@ function vjs_get_poster_file($file_list)
 function vjs_get_mimetype_from_ext($file_ext)
 {
 	$vjs_types = array(
+			'mov'   => 'video/mp4',
 			'ogg'   => 'video/ogg',
 			'ogv'   => 'video/ogg',
 			'mp4'   => 'video/mp4',
@@ -450,6 +452,7 @@ function vjs_get_mimetype_from_ext($file_ext)
 function vjs_valid_extension($file_ext)
 {
 	$vjs_types = array(
+			'mov'   => 'video/mp4',
 			'ogg'   => 'video/ogg',
 			'ogv'   => 'video/ogg',
 			'mp4'   => 'video/mp4',
